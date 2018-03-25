@@ -8,5 +8,5 @@ $ chmod +x ros_catkin_installer.sh
 ```
 Then execute as
 ```
-$ ./ros_catkin_installer.sh
+$ sudo ./ros_catkin_installer.sh
 ```
