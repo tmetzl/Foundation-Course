@@ -34,11 +34,15 @@ function ros_bashrc {
 	do
 	case $opt in
 		"Yes")
-			echo "Adding ROS to .bashrc. A backup file is created as .bashrc_before_ros"
-			cp ~/.bashrc ~/.bashrc_before_ros
-			echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-			echo "Sourcing .bashrc"
-			source ~/.bashrc
+			if grep -q 'source /opt/ros/kinetic/setup.bash' ~/.bashrc; then
+				echo "ROS Kinetic is already present in your bashrc."
+			else	
+				echo "Adding ROS to .bashrc. A backup file is created as .bashrc_before_ros"
+				cp ~/.bashrc ~/.bashrc_before_ros
+				echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+				echo "Sourcing .bashrc"
+				source ~/.bashrc
+			fi
 			break
 			;;
 		"No")
@@ -85,12 +89,16 @@ function catkin_bashrc {
 	do
 	case $opt in
 		"Yes")
-			echo "Adding catkin to .bashrc. A backup file is created as .bashrc_before_catkin"
-			cp ~/.bashrc ~/.bashrc_before_catkin
-			echo "Adding catkin workspace to bashrc"
-			echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
-			echo "Sourcing .bashrc"
-			source ~/.bashrc
+			if grep -q 'catkin_ws/devel/setup.bash' ~/.bashrc; then
+				echo "A catkin workspace is already present in your bashrc."
+			else
+				echo "Adding catkin to .bashrc. A backup file is created as .bashrc_before_catkin"
+				cp ~/.bashrc ~/.bashrc_before_catkin
+				echo "Adding catkin workspace to bashrc"
+				echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+				echo "Sourcing .bashrc"
+				source ~/.bashrc
+			fi
 			break
 			;;
 		"No")
