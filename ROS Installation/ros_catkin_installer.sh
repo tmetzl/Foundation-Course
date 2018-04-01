@@ -20,6 +20,7 @@ function ros_install {
 	sudo apt-get -y install ros-kinetic-smach-viewer
 	echo "Installing Map Server"
 	sudo apt-get -y install ros-kinetic-map-server
+	sudo apt-get -y install python-rosinstall python-rosinstall-generator python-wstool build-essential
 	source /opt/ros/kinetic/setup.bash
 }
 
